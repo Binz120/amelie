@@ -43,7 +43,6 @@
     { "type": "wm", "key": "│ ├", "keyColor": "yellow" },
     { "type": "de", "key": " DE", "keyColor": "yellow" },
     { "type": "terminal", "key": "│ ├", "keyColor": "yellow" },
-    { "type": "packages", "key": "│ ├󰏖", "keyColor": "yellow" },
     { "type": "wmtheme", "key": "│ ├󰉼", "keyColor": "yellow" },
     {
       "type": "command",

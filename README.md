@@ -1,12 +1,12 @@
 # Amélie
 
-![Amélie: terminal specimen over the theme wallpaper](preview.png)
+![Amélie: palette specimen over the theme wallpaper](preview.png)
 
-A theme built from the Amélie palette. Jeunet and Delbonnel lit Montmartre in
-green and gold and held red back for the few objects that carry the story; the
-palette works the same way here. Onyx green field, wheat light, brass chrome, and
-the café awning's red kept for the one thing that should be noticed: errors,
-attention marks and the active window border.
+An Omarchy theme after Jeunet's film. Delbonnel lit Montmartre in green and gold
+and held red back for the few objects that carry the story; the palette works
+the same way here. Onyx green field, wheat light, brass chrome, and the café
+awning's red kept for the one thing that should be noticed: errors, attention
+marks and the active window border.
 
 The film's pleasure is in small tactile things, and the theme is built out of
 them: brass, enamel, lamplight, and a green that is always a room.
@@ -22,39 +22,52 @@ including the gap colour, the inactive border and the bar.
 ![flea floating over the same workspace](screenshots/floating.png)
 
 flea floating over the same windows, resized by hand. The rounding, the shadow
-and the headerbar are `gtk.css`; the transport buttons and file icons keep away
-from red.
+and the headerbar are `gtk.css`; the file icons are `Yaru-sage-dark`, which is
+the one part of the desktop the palette does not paint.
+
+![the Omarchy shell: launcher, notifications and bar](screenshots/shell.png)
+
+The shell surfaces `shell.toml` owns: the bar two steps darker than the windows,
+the launcher card, and notifications carrying the vermillon-to-honey border.
 
 ## Install
 
+Clone anywhere and run the installer. It copies the theme into
+`~/.config/omarchy/themes/amelie` without its `.git`, installs the fonts, the
+four theme-set hooks and the Waterfox helper, then applies the theme:
+
 ```bash
-omarchy theme install https://github.com/Binz120/omarchy-amelie-theme
-omarchy theme set amelie
+git clone https://github.com/Binz120/amelie-theme ~/src/amelie-theme
+~/src/amelie-theme/install.sh
 ```
 
-A clone installs as `amelie`. The accented slug is a local name, since a
-repository name cannot carry it. Omarchy drops a cloned theme's
-`hyprland.lua` and the terminal configs at staging, because those run code.
-`colors.toml` carries the same border gradient as a string, so the look
-survives; the files a local copy adds are a gradient on grouped windows and
-opacity in the terminals.
+`omarchy theme install https://github.com/Binz120/amelie-theme` also works, but
+Omarchy strips anything from a cloned theme that can run code — `*.lua`, the
+terminal configs and `vscode.json` — and regenerates them from `colors.toml`.
+The colours survive; the theme's own `hyprland.lua` is byte-identical to what
+the template generates, so what a clone-staged theme loses in practice is
+nothing visible. The installer exists so the theme, its hooks and its font are
+one command instead of four.
 
-## Apply
+Update:
 
-The theme lives in `~/.config/omarchy/themes/amélie`, written by hand, so
-nothing is stripped at staging.
-
+```bash
+git -C ~/src/amelie-theme pull && ~/src/amelie-theme/install.sh
 ```
-omarchy theme set amélie
+
+Remove:
+
+```bash
+~/src/amelie-theme/uninstall.sh
 ```
 
 Backgrounds: `Super + Ctrl + Space` or `omarchy theme bg next`.
 
 ## Palette
 
-Twelve of the anchors arrived as a list and are used directly; the rest are OKLCH
-variants of those anchors, same hue with different lightness and chroma, because a
-dark theme cannot print `#A4161A` as text (1.56:1) and stay readable.
+Twelve anchors arrived as a list and are used directly; every other role walks
+one of those anchors in OKLCH — same hue, different lightness and chroma —
+because a dark theme cannot print `#A4161A` as text (1.56:1) and stay readable.
 
 | Role | Colour | Anchor | Contrast on the field |
 |---|---|---|---|
@@ -63,8 +76,8 @@ dark theme cannot print `#A4161A` as text (1.56:1) and stay readable.
 | Deepest chrome | `#182417` | Onyx L 0.245 | n/a |
 | Body text (foreground) | `#F5E1B8` | Wheat Light | 9.39 |
 | Cursor (bright foreground) | `#FFF9EA` | Wheat Light L 0.985 | 11.48 |
-| Dim text (dark foreground) | `#76914C` | Green Olive L 0.62 | 3.40 |
-| Comments (muted) | `#839D5C` | Green Olive L 0.66 | 3.99 |
+| Dim text (dark foreground) | `#76914C` | Green Olive L 0.62 | 3.40 (chrome) |
+| Comments (muted) | `#839D5C` | Green Olive L 0.66 | 3.99 (chrome) |
 | Accent: focus, links, functions | `#E8B04A` | Honey | 6.17 |
 | Selection | `#2E5B34` | Military Green | 6.14 with wheat on it |
 | Keywords | `#FEF2D9` | Wheat L 0.965 | 10.86 |
@@ -74,125 +87,134 @@ dark theme cannot print `#A4161A` as text (1.56:1) and stay readable.
 | Parameters, properties | `#9ECBA6` | Military Green L 0.80 | 6.63 |
 | Errors, deletions | `#F67D72` | Red Ruby L 0.725 | 4.65 |
 | ANSI magenta | `#E4887A` | Rust L 0.72 | 4.65 |
-| ANSI brown | `#885E41` | Black of Jay L 0.52 | 2.14 (unused slot) |
+| ANSI brown | `#885E41` | Black of Jay L 0.52 | 2.14 (chrome) |
 
-Reds never carry body text below the error role. `#D64933` (vermillon) and
-`#D64933`-adjacent values sit at 2.79:1 on the field, so they are used as
-surfaces and as the border gradient stop, not as type. Comments are the one
-deliberately low-contrast role (3.99, chrome only); everything else clears 4.5.
+Reds never carry body text below the error role. `#D64933` (vermillon) and the
+values around it sit at 2.79:1 on the field, so they are used as surfaces and as
+the border gradient stop, not as type — the bar's attention role uses the lifted
+ruby at 5.48:1 on the bar instead.
 
-Two notes on the source list. `#C1C13` (red blood), `#F7A3A` (green forest) and
-`#CC86E` (green pistachio) are five digits, so not valid hex, so those three roles
-were derived instead: blood as a lifted ruby, pistachio as a lifted olive, forest
-as the military-green hue carried into the sage family. Send the full six digits
-and they replace the derivations exactly.
+Three roles are deliberately low-contrast chrome, and say so: `muted` (3.99) for
+comments and placeholders, `dark_foreground` (3.40) for line numbers and ANSI 8,
+and `brown` (2.14) for the eighth ANSI hue. Everything else clears 4.5 on both
+the field and the panel. `scripts/audit.py` enforces that, and fails on a hex
+literal in any hand-written config that is not a `colors.toml` role or a
+documented extension.
 
 ## The border
 
-`hyprland.lua` sets a two-stop gradient, vermillon to honey at 45°, on
-`general.col.active_border` and on grouped windows:
+`colors.toml` carries the awning as a two-stop gradient on the active window and
+on grouped windows:
 
-```lua
-local active_border_color = { colors = { "rgba(d64933ee)", "rgba(e8b04aee)" }, angle = 45 }
+```toml
+hyprland_active_border = "rgba(d64933ee) rgba(e8b04aee) 45deg"
+hyprland_inactive_border = "rgba(2e5b34aa)"
 ```
 
-`colors.toml` carries the same gradient as a string so a copy installed from a
-repo (which loses `*.lua`) still gets a border, just a single-stop one.
+Omarchy generates `hyprland.lua` from it with `{{ hypr_gradient … }}`; the theme
+does not ship its own copy, so the border cannot drift from the palette.
 
-## Files
+## What the theme ships
 
 | File | What it does |
 |---|---|
-| `colors.toml` | The palette; every other app config is generated from it at staging. |
-| `shell.toml` | The bar two steps darker than the windows, awning gradient on popups, menus and notifications. |
-| `hyprland.lua` | The active-window gradient. |
-| `gtk.css` | GTK3/4 and libadwaita sheet: Lora on titles, menus and headerbars, sans body. |
-| `alacritty.toml`, `foot.ini`, `kitty.conf`, `ghostty.conf` | Colour and opacity only. |
+| `colors.toml` | The palette. Omarchy generates terminals, Neovim, Helix, VS Code, fcitx5, the shell, the AI CLIs and GTK from it at staging. |
+| `shell.toml` | The shell surfaces: bar two steps darker than the windows, awning gradient on popups, menus, notifications, launcher, polkit and the lock card. |
+| `gtk.css` | GTK3/4 and libadwaita sheet: Lora on titles, menus and headerbars, sans body. Imported by `~/.config/gtk-4.0/gtk.css`. |
 | `btop.theme` | Graphs warm from green to brass as they rise; heat burns honey-white. |
 | `icons.theme` | `Yaru-sage-dark`. |
-| `fastfetch.jsonc` | fastfetch layout in the theme palette: logo, hardware / software / age sections drawn in olive rules, keys in sage, honey and rust. Picked up by `hooks/theme-set.d/30-fastfetch`. |
-| `starship.toml`, `lazygit.yml`, `fzf.sh` | Prompt, git TUI and fuzzy finder colours; all three are wired automatically by `hooks/theme-set.d/40-app-configs`. |
-| `mako.ini` | Notification daemon: onyx box, honey border, critical notifications in ruby. Include it from `~/.config/mako/config`. |
-| `swayosd.css` | OSD styling: `swayosd-server --style ~/.local/state/omarchy/current/theme/swayosd.css`. |
-| `walker.css` | Launcher: point `~/.config/walker/config.toml` at this file. |
+| `fastfetch.jsonc` | fastfetch layout in the theme palette: logo, hardware / software / age sections drawn in olive rules, keys in sage, honey and rust. |
+| `starship.toml`, `lazygit.yml`, `fzf.sh` | Prompt, git TUI and fuzzy finder colours. |
 | `zed.json`, `warp.yaml`, `vencord.theme.css` | Editor, terminal and Discord themes; each app imports its file by hand (see below). |
 | `base24.yaml` | The palette in Base24 form, for any tool that consumes that spec. |
 | `chromium.theme` | `43,58,42`. |
-| `backgrounds/` | One wallpaper, generated procedurally from the palette (Pillow + numpy, 2560x1440). |
-| `preview.png` | 1920x1080 capture of the applied theme: one terminal over the wallpaper. |
-| `screenshots/` | 1920x1080 captures with apps open: tiled and floating. |
+| `legacy/` | Colourings for the Omarchy 2.x / 3.x apps that were replaced by the shell. Not staged by default; see `legacy/README.md`. |
+| `backgrounds/` | One still, `1.jpg` (2560x1440), and its intro clip `intros/1.mp4`. |
+| `fonts/` | Lora Regular and Italic (SIL OFL 1.1), installed by `install.sh`. |
+| `hooks/`, `extras/` | The theme-set hooks and the Waterfox generator, installed by `install.sh`. |
+| `preview.png`, `preview-unlock.png` | Theme-picker previews: the desktop and the lock card. |
+| `screenshots/` | 1920x1080 captures with apps open. |
+
+Omarchy generates the files the theme does not repeat: terminals (four), Neovim,
+Helix, VS Code, fcitx5, Obsidian, keyboard backlight, and the AI CLI configs.
 
 ## Apps outside Omarchy's own theming
 
-Omarchy generates terminals, Neovim, Helix, VS Code, Obsidian, fcitx5, the shell,
-the AI CLIs and GTK from `colors.toml`, so this theme does not repeat them. The
-files above cover the apps that read a user-level config of their own.
+Installed as theme-set hooks by `install.sh`:
 
-Wired automatically on every `omarchy theme set` by `40-app-configs`:
-
-| App | What happens |
+| App | What happens on every `omarchy theme set` |
 |---|---|
 | lazygit | `~/.config/lazygit/config.yml` links to the active theme's `lazygit.yml` |
 | starship | `~/.config/starship.toml` links to the active theme's `starship.toml` |
 | fzf | `~/.config/fzf/omarchy-theme.sh` is rewritten; source it once from your shell rc |
+| fastfetch | `~/.config/fastfetch/config.jsonc` links to the active theme's `fastfetch.jsonc` |
+| Vencord / Vesktop | copies `vencord.theme.css` into `~/.config/Vencord/themes/omarchy.theme.css` |
+| Waterfox | repaints `userChrome.css` and `userContent.css` in every profile |
 
 Imported by hand, because the app owns the file:
 
 ```bash
-# mako: add to ~/.config/mako/config
-include=~/.local/state/omarchy/current/theme/mako.ini
-
-# swayosd
-swayosd-server --style ~/.local/state/omarchy/current/theme/swayosd.css
-
-# walker: ~/.config/walker/config.toml
-[ui]
-theme = "~/.local/state/omarchy/current/theme/walker.css"
-
 # Zed: copy into ~/.config/zed/themes/ and pick "Amélie"
 cp ~/.local/state/omarchy/current/theme/zed.json ~/.config/zed/themes/
 
 # Warp: copy into ~/.warp/themes/
 mkdir -p ~/.warp/themes && cp ~/.local/state/omarchy/current/theme/warp.yaml ~/.warp/themes/
-
-# Vencord / Vesktop: copy into the themes folder and enable it in settings
-cp ~/.local/state/omarchy/current/theme/vencord.theme.css ~/.config/Vencord/themes/
 ```
 
-Steam is not covered: neither Omarchy nor Steam exposes a palette hook that a
-theme can write, so a `steam.css` here would be decoration. Waybar and Wofi are
-Omarchy 3.8 only and are deliberately absent.
-
-## Backgrounds
-
-| File | Motif |
-|---|---|
-| `1.jpg` | Night interior: brass bokeh above, the red awning below, `CAFÉ DES DEUX MOULINS` tracked in the corner. |
+Steam is not covered: neither Omarchy nor Steam exposes a palette hook a theme
+can write, so a `steam.css` here would be decoration.
 
 ## Waterfox
 
-Waterfox is Firefox-derived, so it reads `userChrome.css` and not a single
-colour value. Omarchy themes Chromium only, which is why the browser looks stock
-on a fresh theme change. This machine has a hook for it:
-
-```
-~/.config/omarchy/hooks/theme-set.d/20-waterfox      # runs on every theme change
-~/.local/bin/omarchy-waterfox-theme [slug] [--dry-run]  # renders the CSS by hand
-```
-
-It writes `userChrome.css` and `userContent.css` into every Waterfox profile that
-has a `prefs.js`, and appends the four prefs that let chrome stylesheets load:
+Waterfox is Firefox-derived, so it reads `userChrome.css` rather than a single
+colour value. `extras/omarchy-waterfox-theme` renders `userChrome.css` and
+`userContent.css` from the active theme into every profile that has a
+`prefs.js`, and appends the four prefs that let chrome stylesheets load:
 `toolkit.legacyUserProfileCustomizations.stylesheets`, both `browser.theme.*`
-prefs, and `ui.systemUsesDarkTheme`. Waterfox reads the CSS at startup. Quit and
-reopen it after a theme change.
+prefs, and `ui.systemUsesDarkTheme`. `install.sh` puts it in `~/.local/bin` and
+installs the hook; Waterfox reads the CSS at startup, so quit and reopen it
+after a theme change.
+
+## The wallpaper
+
+`backgrounds/1.jpg` is drawn from `colors.toml` by `scripts/make-background.py`
+(Pillow, fixed seed): the onyx room, a café window of brass bokeh behind its
+mullions, the awning's scalloped valance along the bottom and the café name
+tracked in the corner. It is reproducible and carries no third-party image.
+
+`backgrounds/intros/1.mp4` is the still with a slow push-in that resolves to it
+exactly, rendered by `scripts/make-intro.sh` (ffmpeg, six seconds, silent). The
+shell crossfades into the still, so no fade of its own is needed.
+
+## Development
+
+```bash
+scripts/verify.sh          # palette audit, config parsing, a real staging run
+scripts/verify.sh --fast   # skip the staging run (CI does this)
+scripts/audit.py           # contrast floors and colour provenance
+scripts/make-background.py --help
+scripts/make-intro.sh
+python3 scripts/specimen.py   # the sheet in preview.png
+```
+
+`scripts/verify.sh` stages the theme twice in a throwaway `HOME` — once with a
+`.git` directory and once without — and fails unless both trees are
+byte-identical. That is what keeps the clone and the installer from drifting
+apart.
+
+CI runs the fast checks on every push (`.github/workflows/check.yml`).
 
 ## Verified
 
 ```
-omarchy theme set amélie   → staged, 37 files
-grep -rl '{{' …                  → no unresolved templates
-hyprctl configerrors             → empty
-general:col.active_border        → eed64933 eee8b04a 45deg
-omarchy-theme-color --all | wc -l→ 58 tokens
-contrast_audit.py                → all text roles ≥ 4.5 except muted (3.99, chrome only)
+scripts/verify.sh                 → 0 failures, clone and local staging identical
+scripts/audit.py                  → 22 roles on the published floors, no stray hex
+grep '{{' in the staged theme     → none
+general:col.active_border         → eed64933 eee8b04a 45deg
 ```
+
+## Credits and licence
+
+Theme, code and generated wallpaper: MIT (see `LICENSE`). Lora is by the Lora
+Project Authors under the SIL Open Font License 1.1 (`fonts/OFL.txt`). Icons are
+`Yaru-sage-dark` from the Yaru project, and are not redistributed here.

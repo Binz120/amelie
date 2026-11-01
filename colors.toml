@@ -1,12 +1,13 @@
 # Amélie
 #
 # The palette is the Amélie set: a military green field, wheat light, brass
-# chrome and the red of the café awning. The 15 anchors came in as a list; eight
-# of them carry the theme directly (onyx, wheat, wheat light, military green,
-# olive, caramel, honey, saffron, ruby, vermillon, rust, black of jay) and the
-# rest are variants of those anchors in OKLCH: same hue, different lightness and
-# chroma. Reds never carry text below the error role: they are surfaces,
-# attention marks and the window border.
+# chrome and the red of the café awning. Twelve anchors carry the theme
+# directly (onyx, military green, olive, caramel, honey, saffron, wheat, wheat
+# light, ruby, vermillon, rust, black of jay); every other role is one of those
+# anchors walked in OKLCH -- same hue, different lightness and chroma -- because
+# a dark theme cannot print #A4161A as text (1.56:1) and stay readable. Reds
+# never carry text below the error role: they are surfaces, attention marks and
+# the window border.
 #
 # Anchor map:
 #   onyx           2B3A2A  field, panels
@@ -52,7 +53,7 @@ cyan = "#9ECBA6"                  # Military Green L 0.80: parameters, members
 blue = "#E8B04A"                  # Honey: functions
 magenta = "#E4887A"               # Rust L 0.72
 purple = "#F8CEB3"                # Black of Jay L 0.88
-brown = "#885E41"                 # Black of Jay: rarely used ANSI 8th hue
+brown = "#885E41"                 # Black of Jay: 2.14 on the field, chrome only
 
 bright_red = "#FF9C91"            # Red Ruby L 0.80
 bright_yellow = "#F2D081"         # Saffron L 0.87: constants

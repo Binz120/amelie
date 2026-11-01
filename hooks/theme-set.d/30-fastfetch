@@ -1,0 +1,13 @@
+#!/bin/bash
+# Point fastfetch at the active theme's own fastfetch.jsonc, when it ships one.
+# Themes that do not (Omarchy's stock set, most third-party ones) leave the
+# current config alone.
+set -u
+
+src="$HOME/.local/state/omarchy/current/theme/fastfetch.jsonc"
+dst="$HOME/.config/fastfetch/config.jsonc"
+
+[ -f "$src" ] || exit 0
+
+mkdir -p "$(dirname "$dst")"
+ln -sfn "$src" "$dst"

@@ -8,8 +8,9 @@
 background       = "#212E20"
 background-alpha = 1.0
 text             = "#F5E1B8"
-# Attention modules: recording, voxtype, alerts, updates.
-active           = "#D64933"
+# Attention modules: recording, voxtype, alerts, updates. Lifted ruby, not the
+# raw vermillon: this is text, and vermillon is 2.79 on the field.
+active           = "#F67D72"
 scale-with-font  = true
 size-horizontal  = 26
 size-vertical    = 28

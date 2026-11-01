@@ -1,0 +1,8 @@
+#!/bin/bash
+# Repaint Waterfox from the theme that was just set.
+# $1 is the theme slug. The generator writes userChrome.css/userContent.css into
+# every Waterfox profile and enables chrome stylesheets; the browser picks it up
+# on its next start.
+set -u
+
+/usr/bin/env omarchy-waterfox-theme "${1:-}" >/dev/null 2>&1 || true

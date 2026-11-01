@@ -85,7 +85,7 @@ window.dialog .title,
 popover,
 menu,
 menubar {
-  font-family: "Lora", "Nimbus Roman", serif;
+  font-family: "Lora", "Noto Serif", "Nimbus Roman", serif;
 }
 
 headerbar .title,
@@ -209,12 +209,16 @@ label.dim-label,
   color: @foreground_dim;
 }
 
+/* colors.toml's selection role: military green with wheat on it. The bright
+   green stays for success, not for a block of selected text. */
+@define-color selection_bg #2E5B34;
+
 selection,
 entry selection,
 textview selection,
 label selection {
-  background-color: @green;
-  color: @background_deep;
+  background-color: @selection_bg;
+  color: @foreground;
 }
 
 link,
