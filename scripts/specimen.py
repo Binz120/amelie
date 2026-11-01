@@ -60,15 +60,16 @@ def main() -> None:
     print(f" {ink.fg(colors['accent'], 'AMÉLIE')}   {ink.fg(colors['muted'], 'palette specimen')}")
     print(" " + rule)
 
+    # ANSI black is the field itself, so it gets no swatch: an invisible square
+    # is not a swatch. The field role is named in the semantic block below.
     ansi = [
-        ("black", "black"), ("red", "red"), ("green", "green"), ("yellow", "yellow"),
+        ("red", "red"), ("green", "green"), ("yellow", "yellow"),
         ("blue", "blue"), ("magenta", "magenta"), ("cyan", "cyan"), ("white", "foreground"),
     ]
     bright = [
         ("br.black", "muted"), ("br.red", "bright_red"), ("br.green", "bright_green"),
         ("br.yellow", "bright_yellow"), ("br.blue", "bright_blue"),
         ("br.magenta", "bright_magenta"), ("br.cyan", "bright_cyan"),
-        ("br.white", "bright_foreground"),
     ]
     for (left_label, left_key), (right_label, right_key) in zip(ansi, bright):
         left = ink.bg(colors[left_key], "      ")
@@ -78,6 +79,7 @@ def main() -> None:
         print(f" {left} {left_text:<38} {right} {right_text}")
 
     print(" " + rule)
+    print(f" {ink.fg(colors['muted'], 'ANSI 0 is the field; ANSI 15 is the cursor.')}")
     for role, key, note in (
         ("field", "background", "the room"),
         ("text", "foreground", "body"),
