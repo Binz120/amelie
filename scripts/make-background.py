@@ -40,17 +40,19 @@ VERMILLON = (214, 73, 51)  # #D64933, the awning
 VERMILLON_DEEP = (104, 33, 26)
 BRASS = (201, 161, 59)  # #C9A13B, caramel
 
+# The theme ships Lora, so the wallpaper is drawn with the same serif on every
+# machine; the rest are fallbacks for a checkout without fonts/.
 FONT_CANDIDATES = (
+    str(REPO / "fonts" / "Lora-Regular.ttf"),
     "/usr/share/fonts/TTF/Lora-Regular.ttf",
-    str(Path.home() / ".local/share/fonts/Lora.ttf"),
     "/usr/share/fonts/liberation/LiberationSerif-Regular.ttf",
-    "/usr/share/fonts/TTF/DejaVuSerif.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf",
 )
 ITALIC_CANDIDATES = (
+    str(REPO / "fonts" / "Lora-Italic.ttf"),
     "/usr/share/fonts/TTF/Lora-Italic.ttf",
-    str(Path.home() / ".local/share/fonts/Lora-Italic.ttf"),
     "/usr/share/fonts/liberation/LiberationSerif-Italic.ttf",
-    "/usr/share/fonts/TTF/DejaVuSerif-Italic.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf",
 )
 
 

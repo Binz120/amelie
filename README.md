@@ -13,22 +13,22 @@ them: brass, enamel, lamplight, and a green that is always a room.
 
 ## Screenshots
 
-![btop, lazygit, Neovim and flea tiled on one workspace](screenshots/tiled.png)
+The preview above is the specimen from `scripts/specimen.py` in a 720x400
+terminal over the theme's own wallpaper, with the bar above it.
 
-Four windows on one workspace: btop, lazygit, Neovim reading `colors.toml`, and
-flea on the theme directory. Every colour in the frame comes from the palette,
-including the gap colour, the inactive border and the bar.
+![the lock card over the blurred wallpaper](preview-unlock.png)
 
-![flea floating over the same workspace](screenshots/floating.png)
+`preview-unlock.png` is rendered from the `[lock]` section of `shell.toml`, not
+captured: locking a session to photograph it needs the password to get back, so
+`scripts/make-lock-preview.py` draws the card over the actual wallpaper.
 
-flea floating over the same windows, resized by hand. The rounding, the shadow
-and the headerbar are `gtk.css`; the file icons are `Yaru-sage-dark`, which is
-the one part of the desktop the palette does not paint.
-
-![the Omarchy shell: launcher, notifications and bar](screenshots/shell.png)
-
-The shell surfaces `shell.toml` owns: the bar two steps darker than the windows,
-the launcher card, and notifications carrying the vermillon-to-honey border.
+Captures of running apps are not committed — they show whatever is installed on
+the machine that took them. `scripts/capture-screenshots.sh` makes them on
+demand: `preview.png`, `screenshots/tiled.png` (btop, lazygit, Neovim reading
+`colors.toml`, and flea), `screenshots/floating.png` (flea over the same
+layout), `screenshots/shell.png` (the menu) and `screenshots/notifications.png`
+(a normal and a critical notification). It switches to the theme, captures, and
+puts the previous theme back.
 
 ## Install
 
@@ -132,8 +132,7 @@ does not ship its own copy, so the border cannot drift from the palette.
 | `backgrounds/` | One still, `1.jpg` (2560x1440), and its intro clip `intros/1.mp4`. |
 | `fonts/` | Lora Regular and Italic (SIL OFL 1.1), installed by `install.sh`. |
 | `hooks/`, `extras/` | The theme-set hooks and the Waterfox generator, installed by `install.sh`. |
-| `preview.png`, `preview-unlock.png` | Theme-picker previews: the desktop and the lock card. |
-| `screenshots/` | 1920x1080 captures with apps open. |
+| `preview.png`, `preview-unlock.png` | Theme-picker previews: the desktop, and the lock card rendered from `shell.toml`. |
 
 Omarchy generates the files the theme does not repeat: terminals (four), Neovim,
 Helix, VS Code, fcitx5, Obsidian, keyboard backlight, and the AI CLI configs.
@@ -195,6 +194,8 @@ scripts/audit.py           # contrast floors and colour provenance
 scripts/make-background.py --help
 scripts/make-intro.sh
 python3 scripts/specimen.py   # the sheet in preview.png
+scripts/make-lock-preview.py  # preview-unlock.png
+scripts/capture-screenshots.sh [--opaque]   # the README captures, on your own session
 ```
 
 `scripts/verify.sh` stages the theme twice in a throwaway `HOME` — once with a
@@ -207,6 +208,7 @@ CI runs the fast checks on every push (`.github/workflows/check.yml`).
 ## Verified
 
 ```
+scripts/verify.sh --fast          → 0 failures
 scripts/verify.sh                 → 0 failures, clone and local staging identical
 scripts/audit.py                  → 22 roles on the published floors, no stray hex
 grep '{{' in the staged theme     → none

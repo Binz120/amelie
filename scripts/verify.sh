@@ -100,9 +100,17 @@ if [[ -f $background ]]; then
 else
   bad "$background is missing (run scripts/make-background.py)"
 fi
-for asset in preview.png preview-unlock.png screenshots/tiled.png screenshots/floating.png screenshots/shell.png; do
+for asset in preview.png preview-unlock.png; do
   [[ -f $asset ]] && ok "$asset" || bad "$asset is missing"
 done
+# App captures are optional: they are made on a live session, not shipped.
+if [[ -d screenshots ]]; then
+  for asset in screenshots/tiled.png screenshots/floating.png screenshots/shell.png screenshots/notifications.png; do
+    [[ -f $asset ]] && ok "$asset" || bad "$asset is missing"
+  done
+else
+  printf '  skip  screenshots/ (run scripts/capture-screenshots.sh)\n'
+fi
 if [[ -f backgrounds/intros/1.mp4 ]]; then
   ok "backgrounds/intros/1.mp4"
 else
