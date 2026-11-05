@@ -1,4 +1,4 @@
-# Amélie: prompt. Colours mirror colors.toml; scripts/audit.py checks them.
+# Amélie: prompt. Colours mirror colors.toml.
 
 format = """\
 [┌─](#839D5C)\

@@ -1,4 +1,4 @@
-# Amélie: lazygit. Colours mirror colors.toml; scripts/audit.py checks them.
+# Amélie: lazygit. Colours mirror colors.toml.
 gui:
   theme:
     activeBorderColor:

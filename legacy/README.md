@@ -14,5 +14,5 @@ They are **not** staged into the theme at set time unless you copy them back.
 | `swayosd.css` | swayosd | `swayosd-server --style ~/.local/state/omarchy/current/theme/legacy/swayosd.css` |
 | `walker.css` | walker launcher | `[ui] theme = "…/current/theme/legacy/walker.css"` |
 
-The colours match `colors.toml` at the time of writing. They are not covered by
-`scripts/audit.py`, since they style apps the theme no longer targets.
+The colours match `colors.toml` at the time of writing. They style apps the
+theme no longer targets, so nothing keeps them in step.
